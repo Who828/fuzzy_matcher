@@ -22,9 +22,10 @@
 
 (defn search [word lst & {:keys [n rank]
                           :or {n 15
-                               rank 5}}]
+                               rank 3}}]
   "Get a list of words based on the minimum distance"
-  (let [ranked-words (filter #(< (second %) rank) (apply hash-map
+  (let [ranked-words (apply hash-map
                             (flat-map (fn[x]
-                                        [x (edit-distance word x)]) lst)))]
-    (take n (keys (sort-by val < ranked-words)))))
+                                        [x (edit-distance word x)]) lst))]
+    (take n (keys (sort-by val < (filter #(<= (second %) rank)
+                                         ranked-words))))))
