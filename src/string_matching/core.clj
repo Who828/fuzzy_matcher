@@ -5,6 +5,9 @@
 (defn- take-first [s]
   (take (- (count s) 1) s))
 
+(defn- flat-map [f lst]
+  (flatten (map f lst)))
+
 (defn- min-edit-distance [t p cost]
   (min (+ (edit-distance (take-first t) p) 1)
        (+ (edit-distance t (take-first p)) 1)
@@ -21,3 +24,10 @@
   "Get minimum distance between two strings"
   (memoize edit-dist))
 
+
+(defn search [word lst & {:keys [n]
+                          :or {n 15}}]
+  (let [ranked-words (apply hash-map
+                            (flat-map (fn[x]
+                                        [x (edit-distance word x)]) lst))]
+    (take n (keys (sort-by val < ranked-words)))))
