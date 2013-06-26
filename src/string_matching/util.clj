@@ -1,6 +1,6 @@
 (ns ^{:doc "Approximate String Matching using Levenshtein Distance algorithm."
       :author "Smit Shah <who828@gmail.com>"}
-  string-matching.util)
+  fuzzy-matcher.util)
 
 (defn take-first [s]
   (take (- (count s) 1) s))

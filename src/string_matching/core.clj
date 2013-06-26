@@ -1,6 +1,6 @@
 (ns ^{:doc "Approximate String Matching using Levenshtein Distance algorithm."
       :author "Smit Shah <who828@gmail.com>"}
-  string-matching.core
+  fuzzy-matcher.core
   (:require [string-matching.util :refer [flat-map take-first]]))
 
 (defn- min-edit-distance [t p cost]

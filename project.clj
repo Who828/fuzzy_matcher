@@ -1,4 +1,4 @@
-(defproject string_matching "0.0.1"
+(defproject fuzzy-matcher "0.0.1"
   :description "Approximate String Matching using Levenshtein Distance algorithm"
   :url "http://github.com/who828"
   :license {:name "Eclipse Public License"
