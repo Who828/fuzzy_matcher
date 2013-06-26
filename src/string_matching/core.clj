@@ -20,10 +20,11 @@
   (memoize edit-dist))
 
 
-(defn search [word lst & {:keys [n]
-                          :or {n 15}}]
+(defn search [word lst & {:keys [n rank]
+                          :or {n 15
+                               rank 5}}]
   "Get a list of words based on the minimum distance"
-  (let [ranked-words (apply hash-map
+  (let [ranked-words (filter #(< (second %) rank) (apply hash-map
                             (flat-map (fn[x]
-                                        [x (edit-distance word x)]) lst))]
+                                        [x (edit-distance word x)]) lst)))]
     (take n (keys (sort-by val < ranked-words)))))
