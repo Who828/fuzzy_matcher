@@ -1,17 +1,12 @@
 (ns ^{:doc "Approximate String Matching using Levenshtein Distance algorithm."
       :author "Smit Shah <who828@gmail.com>"}
-  string-matching.core)
-
-(defn- take-first [s]
-  (take (- (count s) 1) s))
-
-(defn- flat-map [f lst]
-  (flatten (map f lst)))
+  string-matching.core
+  (:require [string-matching.util :refer [flat-map take-first]]))
 
 (defn- min-edit-distance [t p cost]
-  (min (+ (edit-distance (take-first t) p) 1)
-       (+ (edit-distance t (take-first p)) 1)
-       (+ (edit-distance (take-first t) (take-first p)) cost)))
+  (min (+ (edit-dist (take-first t) p) 1)
+       (+ (edit-dist t (take-first p)) 1)
+       (+ (edit-dist (take-first t) (take-first p)) cost)))
 
 (defn- edit-dist [t p]
   (cond
@@ -27,6 +22,7 @@
 
 (defn search [word lst & {:keys [n]
                           :or {n 15}}]
+  "Get a list of words based on the minimum distance"
   (let [ranked-words (apply hash-map
                             (flat-map (fn[x]
                                         [x (edit-distance word x)]) lst))]
