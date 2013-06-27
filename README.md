@@ -19,15 +19,11 @@ Vladimir Levenshtein.
 (fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :rank 4)
 ;;=> ("ho" "hi" "boo")
 
-;; you can also specify the size of the list of similar words
-(fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :n 1)
-;;=> ("ho")
-
 ;; you can also find the edit distance between two strings as well
 (edit-distance "house" "home")
 ;;=> 2
 
-;; The default rank is 3 and the size of the list is 15.
+;; The default rank is 3.
 
 ```
 
