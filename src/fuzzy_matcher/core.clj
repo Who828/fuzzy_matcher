@@ -2,7 +2,7 @@
       :author "Smit Shah <who828@gmail.com>"}
   fuzzy-matcher.core)
 
-(declare min-edit-distance)
+(declare min-edit-distance edit-distance)
 
 (defn- edit-distance* [t p]
   (cond
