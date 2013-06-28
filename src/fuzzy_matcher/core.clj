@@ -1,6 +1,7 @@
 (ns ^{:doc "Approximate String Matching using Levenshtein Distance algorithm."
       :author "Smit Shah <who828@gmail.com>"}
-  fuzzy-matcher.core)
+  fuzzy-matcher.core
+  (:require [clojure.core.memoize :as memo]))
 
 (declare min-edit-distance edit-distance)
 
@@ -13,14 +14,14 @@
 
 
 (defn- min-edit-distance [t p cost]
-  (min (+ (edit-distance* (butlast t) p) 1)
-       (+ (edit-distance* t (butlast p)) 1)
-       (+ (edit-distance* (butlast t) (butlast p)) cost)))
+  (min (+ (edit-distance (butlast t) p) 1)
+       (+ (edit-distance t (butlast p)) 1)
+       (+ (edit-distance (butlast t) (butlast p)) cost)))
 
 
 (def edit-distance
   "Get minimum distance between two strings"
-  (memoize edit-distance*))
+  (memo/lu edit-distance* :lu/threshold 50000))
 
 
 (defn search [word lst & {:keys [rank] :or {rank 3}}]
