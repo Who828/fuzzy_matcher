@@ -20,7 +20,7 @@ Vladimir Levenshtein.
 ;;=> ("ho" "hi" "boo")
 
 ;; you can also find the edit distance between two strings as well
-(edit-distance "house" "home")
+(fuzzy/edit-distance "house" "home")
 ;;=> 2
 
 ;; The default rank is 2.
