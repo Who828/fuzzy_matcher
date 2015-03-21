@@ -16,14 +16,14 @@ Vladimir Levenshtein.
 ;;=> ("ho" "hi")
 
 ;; you can specify a different rank(edit distance) if you want to
-(fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :rank 4)
+(fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :rank 3)
 ;;=> ("ho" "hi" "boo")
 
 ;; you can also find the edit distance between two strings as well
-(edit-distance "house" "home")
+(fuzzy/edit-distance "house" "home")
 ;;=> 2
 
-;; The default rank is 3.
+;; The default rank is 2.
 
 ```
 

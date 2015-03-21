@@ -24,7 +24,7 @@
   (memo/lu edit-distance* :lu/threshold 50000))
 
 
-(defn search [word lst & {:keys [rank] :or {rank 3}}]
+(defn search [word lst & {:keys [rank] :or {rank 2}}]
   "Get a list of words based on the minimum distance"
   (sort-by #(edit-distance word %) < (filter #(<= (edit-distance word %) rank)
                                              lst)))
