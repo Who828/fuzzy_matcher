@@ -13,17 +13,17 @@ Vladimir Levenshtein.
 
 ;; Let's search for a list of similar words for a given word
 (fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"])
-;;=> ("ho" "hi")
+;;=> ("hi" "ho")
 
 ;; you can specify a different rank(edit distance) if you want to
-(fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :rank 4)
-;;=> ("ho" "hi" "boo")
+(fuzzy/search "hi" ["ho" "hello" "correct" "boo" "hi"] :rank 3)
+;;=> ("hi" "ho" "boo")
 
 ;; you can also find the edit distance between two strings as well
-(edit-distance "house" "home")
+(fuzzy/edit-distance "house" "home")
 ;;=> 2
 
-;; The default rank is 3.
+;; The default rank is 2.
 
 ```
 
